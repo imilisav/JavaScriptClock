@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Personal Clock</title>
+    <style>
+
+      body {
+        height: 100%;
+        width: 100%;
+        background-image: url(http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0123/2091/rrDiagonal_Stripe_Black_mirror.png);
+        background-position: center;
+        overflow-x: hidden;
+      }
+
+      h1 {
+        width: 100%;
+        margin: 0;
+        padding: 20px 20px;
+        background-color: black;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        color: white;
+        font-family: helvetica;
+        font-weight: lighter;
+        font-size: 5em;
+        letter-spacing: 5px;
+
+        border-style: solid;
+        border-width: 3px;
+        border-color: white;
+
+        text-align: center;
+      }
+
+    </style>
+  </head>
+
+  <body onload="loadTime()">
+    <script>
+      function loadTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+
+        var meridiem = "AM"
+
+        if (hours > 12) {
+          hours = hours - 12;
+          meridiem = "PM"
+        }
+
+        if (hours === 0) {
+          hours = 12;
+        }
+
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+
+        if (hours < 10) {
+          hours = "0" + hours;
+        }
+
+        var clock = document.getElementById('Time');
+        clock.innerText = hours + ":" + minutes + ":" + seconds + " " + meridiem;
+
+        setInterval(loadTime, 1000);
+      }
+    </script>
+    <h1 id="Time"></h1>
+  </body>
+</html>
